@@ -8,26 +8,21 @@
   ******************************************************************************
   */
 #include<iostream>
-#include<Eigen/Core>
 
-using namespace std;
-using namespace Eigen;
+#include <glog/logging.h>
+#include <gflags/gflags.h>
 
-int main() {
-    MatrixXd::Index maxRow, maxCol;
-    MatrixXd::Index minRow, minCol;
-    MatrixXd mMat(4,4);
-    mMat << 11, 10, 13, 15,
-            3, 24, 56,	1,
-            2, 12, 45,	0,
-            8, 5,	6,	4;
-    double min = mMat.minCoeff(&minRow,&minCol);
-    double max = mMat.maxCoeff(&maxRow,&maxCol);
-    cout << "Max = \n" << max << endl;
-    cout << "Min = \n" << min << endl;
-    cout << "minRow = " << minRow << "minCol = " <<minCol<<endl;
-    cout << "maxRow = " << maxRow << "maxCol = " << maxCol << endl;
 
-    std::cout<<" hello world" << std::endl;
+int main(int argc,char *argv[])  {
+    google::InitGoogleLogging(argv[0]);
+    google::SetLogDestination(google::GLOG_INFO, "/home/MonoLaneMapping/log/");
+    google::SetStderrLogging(google::GLOG_INFO);
+    google::SetLogFilenameExtension("log_");
+    FLAGS_colorlogtostderr = true;  // Set log color
+    FLAGS_logbufsecs = 0;  // Set log output speed(s)
+    LOG(INFO) << "info test" << "hello log!";  //输出一个Info日志
+    LOG(WARNING) << "warning test";  //输出一个Warning日志
+    LOG(ERROR) << "error test";  //输出一个Error日志
+    google::ShutdownGoogleLogging();
     return 0;
 }

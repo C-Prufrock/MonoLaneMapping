@@ -12,10 +12,12 @@
 #ifndef MONOLANEMAPPING_MONO_LANE_SLAM_H
 #define MONOLANEMAPPING_MONO_LANE_SLAM_H
 
+#include <memory>
 
-class mono_lane_slam {
-
+class MonoLaneSlam {
+public:
+    MonoLaneSlam();
 };
-
+using MonoLaneSlamPtr = std::shared_ptr<MonoLaneSlam>;
 
 #endif //MONOLANEMAPPING_MONO_LANE_SLAM_H

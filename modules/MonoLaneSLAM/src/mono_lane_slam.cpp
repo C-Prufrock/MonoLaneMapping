@@ -8,5 +8,7 @@
   ******************************************************************************
   */
 
+#include "mono_lane_slam.h"
 
-#include "../include/mono_lane_slam.h"
+MonoLaneSlam::MonoLaneSlam() {};
+

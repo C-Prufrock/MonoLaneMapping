@@ -26,12 +26,9 @@ public:
     Eigen::Matrix4d extrinsic_matrix_;
     Eigen::Matrix3d intrinsic_matrix_;
     Eigen::Matrix4d pose_;
-    Lane lane_;
+    std::vector<LanePtr> lane_ptrs_;
 };
 
 using FramePtr = std::shared_ptr<Frame>;
-
-
-
 
 #endif //MONOLANEMAPPINGINTERFACE_FRAME_H

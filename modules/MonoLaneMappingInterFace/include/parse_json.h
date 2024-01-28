@@ -26,6 +26,7 @@ public:
     ParseJson();
 public:
     FramePtr parse_json_data(nlohmann::json& j);
+    void Parse_lane_ptrs(nlohmann::json &j,std::vector<LanePtr>&lane_ptrs_);
 
 
 };

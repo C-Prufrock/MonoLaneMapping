@@ -23,7 +23,7 @@ namespace IO {
     namespace JsonTransForm{
 
         template< typename ScalarType, int rows, int cols >
-        void from_json( const nlohmann::json& jsonObject, Eigen::Matrix< ScalarType, rows, cols >& matrix )
+        void jsonToEigenMatrix( const nlohmann::json& jsonObject, Eigen::Matrix< ScalarType, rows, cols >& matrix )
         {
             nlohmann::json jsonArray;
             if ( jsonObject.is_array( ) )
@@ -75,6 +75,42 @@ namespace IO {
                     matrix( r, c ) = jsonArrayOfArrays[r][c].get<ScalarType>();
                 }
             }
+            return;
+        }
+
+        template<typename ScalarType>
+        void jsonToStdVector(const nlohmann::json& jsonObject,std::vector<ScalarType>& vec) {
+            if(!jsonObject.is_array( ) ) {
+                std::cerr<<" Json Object is not iterable,check Json Key or Json data";
+            }
+            int json_array_size = jsonObject.size();
+            for(int i = 0; i < json_array_size;i++) {
+                vec.emplace_back((ScalarType)jsonObject[i].get<ScalarType>());
+            }
+
+            return;
+        };
+
+        template<typename ScalarType,int vec_dim>
+        void jsonToVectorEigenVector(const nlohmann::json& jsonObject,std::vector<Eigen::Matrix<ScalarType,vec_dim,1>>& vec_ev) {
+            const unsigned int dim_size = jsonObject.size( );
+            const unsigned int json_vector_size = jsonObject.front( ).size( );
+            if ( ( vec_dim >= 0 && int( dim_size) != vec_dim ))
+            {
+                std::cerr << "Expected Eigen Vector of size " << vec_dim
+                          << ", received Eigen Vector of size " << dim_size << std::endl;
+            }
+            LOG(INFO)<<" json vector size is "<< json_vector_size;
+            vec_ev.resize(json_vector_size);
+            LOG(INFO)<<" vev_env before fill "<< vec_ev.size();
+            for(int j = 0; j < json_vector_size; j++) {
+                Eigen::Matrix<ScalarType,vec_dim,1> cur_ev_;
+                for(int i = 0; i < dim_size; i++) {
+                    // LOG(INFO)<<" jsonOBject[i][j]" << jsonObject[i][j];
+                    vec_ev[j][i] = jsonObject[i][j].get<ScalarType>();
+                }
+            }
+            LOG(INFO)<<" vec_ev size is "<< vec_ev.size();
             return;
         }
 

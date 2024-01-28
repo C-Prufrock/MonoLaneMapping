@@ -1,5 +1,5 @@
 sudo docker run -p 50003:22 \
-                -v "/home/lxy/MonoLaneMaping":"/home/MonoLaneMapping/" \
+                -v "/home/lxy/MonoLaneMapping":"/home/MonoLaneMapping/" \
                 -v "/home/lxy/OpenLane/lane3d_1000_training/training":"/home/data/" \
 		        --privileged=true \
 	            -itd lxy2019/mono_lane_mapping:v0.3 /bin/bash

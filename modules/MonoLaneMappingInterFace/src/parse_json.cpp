@@ -18,17 +18,18 @@
 ParseJson::ParseJson() {};
 
 FramePtr ParseJson::parse_json_data(nlohmann::json &j) {
-    FramePtr cur_frame;
-    nlohmann::json extrin_j = j["extrinsic"];
-    Eigen::MatrixXd temp_extrin_matrix;
-    IO::JsonTransForm::readJsonToMatrixXd(j["extrinsic"],temp_extrin_matrix);
-    cur_frame->extrinsic_matrix_ = Eigen::Map<Eigen::Matrix4d>(temp_extrin_matrix.data());
-    LOG(INFO)<<" matrix " << cur_frame->extrinsic_matrix_;
+    FramePtr cur_frame = std::make_shared<Frame>();
 
-    Eigen::Matrix4d extrinsic_matrix;
+    IO::JsonTransForm::from_json<double,4,4>(j["extrinsic"],cur_frame->extrinsic_matrix_);
+    LOG(INFO)<<" cur farme extrinsic matrix is \n"<< cur_frame->extrinsic_matrix_;
 
-    // cur_frame->extrinsic_matrix_
-//    LOG(INFO)<<" log well in  parse";
+    IO::JsonTransForm::from_json<double,3,3>(j["intrinsic"],cur_frame->intrinsic_matrix_);
+    LOG(INFO)<<" cur farme intrinsic matrix is \n"<< cur_frame->intrinsic_matrix_;
+
+    IO::JsonTransForm::from_json<double,4,4>(j["pose"],cur_frame->pose_);
+    LOG(INFO)<<" cur frame pose is "<< cur_frame->pose_;
+
+
 
     return cur_frame;
 

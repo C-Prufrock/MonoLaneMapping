@@ -13,6 +13,7 @@
 #define MONOLANEMAPPINGINTERFACE_LANE_H
 
 #include<vector>
+#include<memory>
 #include<Eigen/Dense>
 class Lane {
 // ref: https://github.com/OpenDriveLab/OpenLane/blob/main/anno_criterion/Lane/README.md
@@ -49,5 +50,6 @@ public:
     std::vector<Eigen::Vector3d>xyzs_;
     int track_id_;
 };
+using LanePtr = std::shared_ptr<Lane>;
 
 #endif //MONOLANEMAPPINGINTERFACE_LANE_H

@@ -17,14 +17,20 @@
 #include <nlohmann/json.hpp>
 #include <glog/logging.h>
 
+#include "MonoLaneSLAM/include/mono_lane_slam.h"
 #include "parse_json.h"
 
 class MonoLaneMappingInterface {
 public:
     MonoLaneMappingInterface();
 
+// interface for input-core transform;
 public:
     ParseJsonPtr  parse_json_ptr_;
+
+// Core Function;
+public:
+    MonoLaneSlamPtr mono_lane_slam_ptr_;
 
 public:
     void lane_mapping_pipleline(nlohmann::json& all_data_json);

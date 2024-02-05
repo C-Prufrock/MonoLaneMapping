@@ -43,12 +43,20 @@ public:
         Right = 3,
         RightRight = 4,
     };
+
     LaneCateGory category_;
     LaneAttribute attribute_;
     std::vector<int>visibilitys_;
     std::vector<Eigen::Vector2d>uvs_;
     std::vector<Eigen::Vector3d>xyzs_;
+
+public:
+    std::vector<Eigen::Vector2d> control_points_ ;
+
     int track_id_;
+
+public:
+    void preprocess();
 };
 using LanePtr = std::shared_ptr<Lane>;
 

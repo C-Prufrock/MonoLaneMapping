@@ -14,6 +14,7 @@
 
 MonoLaneMappingInterface::MonoLaneMappingInterface() {
     parse_json_ptr_ = std::make_shared<ParseJson>();
+    mono_lane_slam_ptr_ = std::make_shared<MonoLaneSlam>();
 };
 
 void MonoLaneMappingInterface::lane_mapping_pipleline(nlohmann::json& all_data_json) {

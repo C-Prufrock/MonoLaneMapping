@@ -1,21 +1,16 @@
 /**
   ******************************************************************************
-  * @file           : common.h
+  * @file           : tracker.cpp
   * @author         : lxy
   * @brief          : None
   * @attention      : None
-  * @date           : 24-1-4
+  * @date           : 1/28/24
   ******************************************************************************
   */
 
+#include "tracker.h"
 
-#ifndef MONOLANEMAPPING_COMMON_H
-#define MONOLANEMAPPING_COMMON_H
-
-
-class common {
+template<typename T>
+tracker_base<T>::tracker_base() {
 
 };
-
-
-#endif //MONOLANEMAPPING_COMMON_H

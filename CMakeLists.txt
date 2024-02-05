@@ -57,3 +57,8 @@ target_link_libraries(MonoLaneMapping PUBLIC
         glog::glog
         ${Gflags_LIBRARIES}
 )
+
+add_executable(test_opencv_vis test/test_opencv_visualization.cpp)
+target_link_libraries(test_opencv_vis
+        common
+        ${OpenCV_LIBRARIES})

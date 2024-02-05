@@ -1,21 +1,11 @@
 /**
   ******************************************************************************
-  * @file           : lane.cpp
+  * @file           : douglas_peuker.cpp
   * @author         : lxy
   * @brief          : None
   * @attention      : None
-  * @date           : 1/25/24
+  * @date           : 1/28/24
   ******************************************************************************
   */
 
-#include"lane.h"
-
-#include "common/algorithm/include/douglas_peuker.h"
-
-
-Lane::Lane(){};
-
-void Lane::preprocess() {
-
-    return;
-};
+#include "douglas_peuker.h"

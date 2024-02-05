@@ -87,7 +87,6 @@ namespace IO {
             for(int i = 0; i < json_array_size;i++) {
                 vec.emplace_back((ScalarType)jsonObject[i].get<ScalarType>());
             }
-
             return;
         };
 
@@ -100,19 +99,15 @@ namespace IO {
                 std::cerr << "Expected Eigen Vector of size " << vec_dim
                           << ", received Eigen Vector of size " << dim_size << std::endl;
             }
-            LOG(INFO)<<" json vector size is "<< json_vector_size;
             vec_ev.resize(json_vector_size);
-            LOG(INFO)<<" vev_env before fill "<< vec_ev.size();
             for(int j = 0; j < json_vector_size; j++) {
                 Eigen::Matrix<ScalarType,vec_dim,1> cur_ev_;
                 for(int i = 0; i < dim_size; i++) {
-                    // LOG(INFO)<<" jsonOBject[i][j]" << jsonObject[i][j];
                     vec_ev[j][i] = jsonObject[i][j].get<ScalarType>();
                 }
             }
-            LOG(INFO)<<" vec_ev size is "<< vec_ev.size();
             return;
-        }
+        };
 
     }
 }

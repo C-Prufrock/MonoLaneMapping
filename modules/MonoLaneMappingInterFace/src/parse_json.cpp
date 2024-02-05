@@ -17,8 +17,6 @@
 
 ParseJson::ParseJson() {};
 
-
-
 FramePtr ParseJson::parse_json_data(nlohmann::json &j) {
     FramePtr cur_frame = std::make_shared<Frame>();
 
@@ -32,6 +30,7 @@ FramePtr ParseJson::parse_json_data(nlohmann::json &j) {
     // LOG(INFO)<<" cur frame pose is "<< cur_frame->pose_;
 
     Parse_lane_ptrs(j["lane_lines"],cur_frame->lane_ptrs_);
+
 //    for(auto lane_ptr:cur_frame->lane_ptrs_) {
 //        LOG(INFO)<<" Cur lane category is "<< (int)lane_ptr->category_;
 //        LOG(INFO)<<" Cur lane attribute is "<< (int)lane_ptr->attribute_;
@@ -56,9 +55,9 @@ void ParseJson::Parse_lane_ptrs(nlohmann::json &j,std::vector<LanePtr>&lane_ptrs
         IO::JsonTransForm::jsonToStdVector<int>(laneline["visibility"],cur_lane_ptr->visibilitys_);
         IO::JsonTransForm::jsonToVectorEigenVector<double,2>(laneline["uv"],cur_lane_ptr->uvs_);
         IO::JsonTransForm::jsonToVectorEigenVector<double,3>(laneline["xyz"],cur_lane_ptr->xyzs_);
-        LOG(INFO)<<"cur_lane_ptr->visibilitys_.size() is  "<< cur_lane_ptr->visibilitys_.size();
-        LOG(INFO)<<"cur_lane_ptr->uvs_.size() is  "<< cur_lane_ptr->uvs_.size();
-        LOG(INFO)<<"cur_lane_ptr->xyz.size() is  "<< cur_lane_ptr->xyzs_.size();
+//        LOG(INFO)<<"cur_lane_ptr->visibilitys_.size() is  "<< cur_lane_ptr->visibilitys_.size();
+//        LOG(INFO)<<"cur_lane_ptr->uvs_.size() is  "<< cur_lane_ptr->uvs_.size();
+//        LOG(INFO)<<"cur_lane_ptr->xyz.size() is  "<< cur_lane_ptr->xyzs_.size();
 //        if(cur_lane_ptr->visibilitys_.size() != cur_lane_ptr->uvs_.size() || cur_lane_ptr->uvs_.size()!= cur_lane_ptr->xyzs_.size() ) {
 //            LOG(ERROR)<<" Json Data Error: uvs has no same size with xyzs or visibility";
 //            continue;
